@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.webfaria.dscatalog.dto.RoleDTO;
 import com.webfaria.dscatalog.dto.UserDTO;
 import com.webfaria.dscatalog.dto.UserInsertDTO;
+import com.webfaria.dscatalog.dto.UserUpdateDTO;
 import com.webfaria.dscatalog.entities.Role;
 import com.webfaria.dscatalog.entities.User;
 import com.webfaria.dscatalog.repositories.RoleRepository;
@@ -58,7 +59,7 @@ public class UserService {
 	}
 
 	@Transactional
-	public UserDTO update(Long id, UserDTO dto) {
+	public UserDTO update(Long id, UserUpdateDTO dto) {
 		try {
 			User entity = repository.getOne(id);
 			copyDtoToEntity(dto, entity);
