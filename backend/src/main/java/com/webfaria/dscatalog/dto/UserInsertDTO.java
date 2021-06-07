@@ -1,5 +1,8 @@
 package com.webfaria.dscatalog.dto;
 
+import com.webfaria.dscatalog.services.validator.UserInsertValid;
+
+@UserInsertValid
 public class UserInsertDTO extends UserDTO {
 	private static final long serialVersionUID = 1L;
 
