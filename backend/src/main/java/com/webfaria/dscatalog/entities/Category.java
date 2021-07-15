@@ -24,16 +24,16 @@ public class Category implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
-
-	@Column(name = "created_At", columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
-	private Instant createAt;
-
-	@Column(name = "apdate_At", columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
-	private Instant apdateAt;
 	
+	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
+	private Instant createdAt;
+
+	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
+	private Instant updatedAt;
+
 	@ManyToMany(mappedBy = "categories")
 	private Set<Product> products = new HashSet<>();
-
+	
 	public Category() {
 	}
 
@@ -57,29 +57,29 @@ public class Category implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-
-	public Instant getCreateAt() {
-		return createAt;
+	
+	public Instant getCreatedAt() {
+		return createdAt;
 	}
 
-	public Instant getApdateAt() {
-		return apdateAt;
+	public Instant getUpdatedAt() {
+		return updatedAt;
 	}
 
 	@PrePersist
 	public void prePersist() {
-		createAt = Instant.now();
-	}
-
-	@PreUpdate
-	public void preUpdate() {
-		apdateAt = Instant.now();
+		createdAt = Instant.now();
 	}
 	
+	@PreUpdate
+	public void preUpdate() {
+		updatedAt = Instant.now();
+	}
+
 	public Set<Product> getProducts() {
 		return products;
 	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -104,5 +104,4 @@ public class Category implements Serializable {
 			return false;
 		return true;
 	}
-
 }
